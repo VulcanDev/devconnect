@@ -3,6 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = validateRegisterInput = data => {
   let errors = {};
+  const passwordRules = /^([^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
 
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
@@ -12,33 +13,29 @@ module.exports = validateRegisterInput = data => {
   if (!Validator.isLength(data.name, { min: 2, max: 30 }))
     errors.name = 'Name must be between 2 and 30 characters';
 
-  if (Validator.isEmpty(data.name)) 
-    errors.name = 'Name field is required';
-  
-  
-  if (Validator.isEmpty(data.email)) 
-    errors.email = 'Email field is required';
-  
+  if (passwordRules.test(data.password))
+    errors.password = 'Password must contain at least one capital letter, one special character and one digit';
 
-  if (!Validator.isEmail(data.email)) 
+  if (!Validator.isLength(data.password, { min: 6, max: 32 }))
+    errors.password = 'Password must be between 6 and 32 characters';
+
+  if (!Validator.isEmail(data.email))
     errors.email = 'Email is invalid';
-  
 
-  if (Validator.isEmpty(data.password)) 
+  if (Validator.isEmpty(data.name))
+    errors.name = 'Name field is required';
+
+  if (Validator.isEmpty(data.email))
+    errors.email = 'Email field is required';
+
+  if (Validator.isEmpty(data.password))
     errors.password = 'Password is required';
-  
 
-  if (!Validator.isLength(data.password, { min: 6, max: 32})) 
-    errors.password = 'Password must be at least 6 characters';
-  
-
-  if (Validator.isEmpty(data.password2)) 
+  if (Validator.isEmpty(data.password2))
     errors.password2 = 'Comfirm password field is required';
-  
 
-  if (!Validator.equals(data.password, data.password2)) 
+  if (!Validator.equals(data.password, data.password2))
     errors.password2 = 'Passwords must match';
-  
 
   return {
     errors,
