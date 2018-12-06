@@ -3,7 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = validateRegisterInput = data => {
   let errors = {};
-  const passwordRules = /^([^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
+  const passwordRules = /^([^A-Z]*|[^a-z]*|[A-Z0-9]*)$/;
 
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
