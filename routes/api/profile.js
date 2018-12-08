@@ -24,9 +24,9 @@ router.get(
     Profile.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
       .then(profile => {
-        if (!profile) {
+        if (!profile) { 
           errors.noprofile = 'There is no profile for this user';
-          return res.json({ errors: errors });
+          return res.status(404).json(errors);
         }
         res.json(profile);
       })
@@ -111,21 +111,21 @@ router.post(
       social: {}
     };
 
-    if (req.body.handle) profileFields.handle = req.body.handle;                  // Handle
-    if (req.body.company) profileFields.company = req.body.company;               // Company
-    if (req.body.website) profileFields.website = req.body.website;               // Website
-    if (req.body.location) profileFields.location = req.body.location;            // Location
-    if (req.body.bio) profileFields.bio = req.body.bio;                           // Bio
-    if (req.body.status) profileFields.status = req.body.status;                  // Status
+    if (req.body.handle) profileFields.handle = req.body.handle; // Handle
+    if (req.body.company) profileFields.company = req.body.company; // Company
+    if (req.body.website) profileFields.website = req.body.website; // Website
+    if (req.body.location) profileFields.location = req.body.location; // Location
+    if (req.body.bio) profileFields.bio = req.body.bio; // Bio
+    if (req.body.status) profileFields.status = req.body.status; // Status
     if (req.body.githubusername)
-      profileFields.githubusername = req.body.githubusername;                     // Github Username
+      profileFields.githubusername = req.body.githubusername; // Github Username
     if (req.body.skills !== 'undefined')
-      profileFields.skills = req.body.skills.split(',');                          // Skills
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;        // Youtube
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter;        // Twitter
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;     // Facebook
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;  // Instagram
-    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;     // LinkedIn
+      profileFields.skills = req.body.skills.split(','); // Skills
+    if (req.body.youtube) profileFields.social.youtube = req.body.youtube; // Youtube
+    if (req.body.twitter) profileFields.social.twitter = req.body.twitter; // Twitter
+    if (req.body.facebook) profileFields.social.facebook = req.body.facebook; // Facebook
+    if (req.body.instagram) profileFields.social.instagram = req.body.instagram; // Instagram
+    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin; // LinkedIn
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -255,12 +255,11 @@ router.delete(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Profile.findOneAndRemove({ user: req.user.id })
-      .then(() => {
-        User.findByIdAndRemove(req.user.id, () => {
-          res.json({ success: true});
-        })
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findByIdAndRemove(req.user.id, () => {
+        res.json({ success: true });
       });
+    });
   }
 );
 

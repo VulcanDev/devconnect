@@ -27,12 +27,9 @@ module.exports = validateProfileInput = data => {
     errors.skills = 'Skills field is required';
 
   if (!isEmpty(data.website) && !Validator.isURL(data.website)) errors.website =        'Not a valid URL'; // Website
-  if (!isEmpty(data.youtube) && !Validator.isURL(data.youtube)) errors.youtube =        'Not a valid URL'; // Youtube
-  if (!isEmpty(data.twitter) && !Validator.isURL(data.twitter)) errors.twitter =        'Not a valid URL'; // Twitter
   if (!isEmpty(data.facebook) && !Validator.isURL(data.facebook)) errors.facebook =     'Not a valid URL'; // Facebook
-  if (!isEmpty(data.instagram) && !Validator.isURL(data.instagram)) errors.instagram =  'Not a valid URL'; // Instagram
-  if (!isEmpty(data.linkedin) && !Validator.isURL(data.linkedin)) errors.linkedin =     'Not a valid URL'; // LinkedIn
-
+  if (!isEmpty(data.youtube) && !Validator.isURL(data.youtube)) errors.youtube =        'Not a valid URL'; // Youtube
+  
   return {
     errors,
     isValid: isEmpty(errors)
