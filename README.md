@@ -10,6 +10,7 @@ This project is based on a web-course on Udemy, specifically [MERN Stack Front t
 
 ## My Features
 
+- [x] Favicon and Logo art
 - [ ] Connect social media accounts: Integrate social media sites API for validating ownership of social media
 - [ ] Use a custom Foundation UI for the website instead of the premade bootstrap one
 
