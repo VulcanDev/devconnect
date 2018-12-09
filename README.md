@@ -1,4 +1,4 @@
-![DevConnect Banner](https://imgur.com/BSkqRqC.png)
+![DevConnect Banner](https://imgur.com/zfsEzZ4.png)
 
 # DevConnect
 
@@ -11,8 +11,10 @@ This project is based on a web-course on Udemy, specifically [MERN Stack Front t
 ## My Features
 
 - [x] Favicon and Logo art
+- [x] Better sanitization: Login and register email is not case-sensitive & profile handle is always lowercase
 - [ ] Connect social media accounts: Integrate social media sites API for validating ownership of social media
 - [ ] Use a custom Foundation UI for the website instead of the premade bootstrap one
+- [ ] Reset / change password
 
 More to come. Features will be developed after completing the base project.
 

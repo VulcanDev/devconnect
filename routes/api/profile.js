@@ -24,7 +24,7 @@ router.get(
     Profile.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
       .then(profile => {
-        if (!profile) { 
+        if (!profile) {
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
@@ -102,8 +102,10 @@ router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    const { body } = req;
+
     // Validate
-    const { errors, isValid } = validateProfileInput(req.body);
+    const { errors, isValid } = validateProfileInput(body);
     if (!isValid) return res.status(400).json(errors);
 
     const profileFields = {
@@ -111,21 +113,21 @@ router.post(
       social: {}
     };
 
-    if (req.body.handle) profileFields.handle = req.body.handle; // Handle
-    if (req.body.company) profileFields.company = req.body.company; // Company
-    if (req.body.website) profileFields.website = req.body.website; // Website
-    if (req.body.location) profileFields.location = req.body.location; // Location
-    if (req.body.bio) profileFields.bio = req.body.bio; // Bio
-    if (req.body.status) profileFields.status = req.body.status; // Status
-    if (req.body.githubusername)
-      profileFields.githubusername = req.body.githubusername; // Github Username
-    if (req.body.skills !== 'undefined')
-      profileFields.skills = req.body.skills.split(','); // Skills
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube; // Youtube
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter; // Twitter
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook; // Facebook
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram; // Instagram
-    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin; // LinkedIn
+    // Insert profile data from body to profileFields
+    for (let p in body) {
+      if (!(p === 'skills' || p === 'social')) profileFields[p] = body[p];
+      if (p === 'skills' && p !== 'undefined')
+        profileFields[p] = body.skills.split(',');
+      if (
+        // Send social properties into the social object in profileFields
+        p === 'twitter' ||
+        p === 'facebook' ||
+        p === 'instagram' ||
+        p === 'linkedin' ||
+        p === 'youtube'
+      )
+        profileFields.social[p] = body[p];
+    }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -162,15 +164,11 @@ router.post(
     if (!isValid) return res.status(400).json(errors);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
-      const newExp = {
-        title: req.body.title,
-        company: req.body.company,
-        location: req.body.location,
-        from: req.body.from,
-        to: req.body.to,
-        current: req.body.current,
-        description: req.body.description
-      };
+      const newExp = {};
+
+      for (let p in req.body) {
+        newExp[p] = req.body[p];
+      }
 
       profile.experience.unshift(newExp);
       profile.save().then(profile => res.json(profile));
@@ -190,15 +188,11 @@ router.post(
     if (!isValid) return res.status(400).json(errors);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
-      const newEdu = {
-        school: req.body.school,
-        degree: req.body.degree,
-        fieldofstudy: req.body.fieldofstudy,
-        from: req.body.from,
-        to: req.body.to,
-        current: req.body.current,
-        description: req.body.description
-      };
+      const newEdu = {};
+
+      for (let p in req.body) {
+        newEdu[p] = req.body[p];
+      }
 
       profile.education.unshift(newEdu);
       profile.save().then(profile => res.json(profile));

@@ -38,7 +38,7 @@ class Register extends Component {
 
     const newUser = {
       name: this.state.name,
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password,
       password2: this.state.password2
     };
@@ -85,7 +85,7 @@ class Register extends Component {
                 />
                 <TextFieldGroup
                   placeholder='Confirm Password'
-                  name='password'
+                  name='password2'
                   type='password'
                   value={this.state.password2}
                   onChange={this.onChange}
