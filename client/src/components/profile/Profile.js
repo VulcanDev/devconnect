@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { getProfileByHandle } from '../../actions/profileActions';
+import { getProfileById } from '../../actions/profileActions';
 
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
@@ -14,7 +15,10 @@ import Spinner from '../common/Spinner';
 class Profile extends Component {
   componentDidMount() {
     const { handle } = this.props.match.params;
+    const { id } = this.props.match.params;
+
     if (handle) this.props.getProfileByHandle(handle);
+    if (id) this.props.getProfileById(id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -67,6 +71,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -76,5 +81,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileByHandle }
+  { getProfileByHandle, getProfileById }
 )(Profile);

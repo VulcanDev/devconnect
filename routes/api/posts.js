@@ -45,7 +45,7 @@ router.post(
       text: body.text,
       name: body.name,
       avatar: body.avatar,
-      user: user.id
+      user: req.user.id
     })
       .save()
       .then(post => res.json(post));
@@ -139,6 +139,7 @@ router.post(
         for (let p in req.body) {
           newComment[p] = req.body[p];
         }
+        newComment.user = req.user.id;
 
         post.comments.push(newComment);
         post.save().then(post => res.json(post));
