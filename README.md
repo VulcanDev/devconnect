@@ -21,4 +21,56 @@ Features will be developed after completing the base project.
 
 ## Live Host
 
-Site will be hosted on Heroku upon completion of the base project.
+https://dconnect.herokuapp.com
+
+# Run Development
+
+#### First run `npm i` in both the root directory and the client directory to download node modules.
+
+## MongoDB
+
+Go to https://www.mongodb.com/cloud/atlas and create a free account if you haven't already. Create a cluster and click 'Connect'. From there choose the Connect Your Application and create an admin account (remember this password!). Place the Short SRV URI with <PASSWORD> replaced with the password you just made in the keys file detailed below.
+
+## JWT SecretOrKey
+
+This can be any random string.
+
+### keys.js
+
+```javascript
+// root/config/keys_dev.js
+module.exports = {
+  mongoURI: 'YourMongoURI',
+  secret: 'YourJWTTokenSecretOrKey'
+};
+```
+
+## GitHub OAuth
+
+Log into GitHub and go to https://github.com/settings/developers. Here you need to create an OAuth application and fill in the info with whatever you want. Once complete use the client id and secret as directed below.
+
+### client/keys.js
+
+```javascript
+// root/client/keys.js
+export default ({
+  githubSecret: 'YourGitHubSecret'
+});
+```
+
+and change client id to yours
+
+### client/components/profile/Profile.js
+
+```javascript
+// root/client/components/profile/Profile.js
+state = {
+  clientId: 'YourClientId',
+  clientSecret: keys.githubSecret,
+  count: 5,
+  sort: 'created: asc',
+  repos: []
+};
+```
+
+#### Setup complete! Now just run `npm run dev`
