@@ -29,7 +29,7 @@ https://dconnect.herokuapp.com
 
 ## MongoDB
 
-Go to https://www.mongodb.com/cloud/atlas and create a free account if you haven't already. Create a cluster and click 'Connect'. From there choose the Connect Your Application and create an admin account (remember this password!). Place the Short SRV URI with <PASSWORD> replaced with the password you just made in the keys file detailed below.
+Go to https://www.mongodb.com/cloud/atlas and create a free account if you haven't already. Create a cluster and click 'Connect'. From there choose the Connect Your Application and create an admin account (remember this password!). Place the Short SRV URI with `<PASSWORD>` replaced with the password you just made in the keys file detailed below.
 
 ## JWT SecretOrKey
 
