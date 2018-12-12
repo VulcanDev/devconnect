@@ -52,7 +52,7 @@ Log into GitHub and go to https://github.com/settings/developers. Here you need 
 ### client/src/config/keys_dev.js
 
 ```javascript
-// root/client/config/keys_dev
+// root/client/config/keys_dev.js
 export default ({
   githubSecret: 'YourGitHubSecret'
 });
