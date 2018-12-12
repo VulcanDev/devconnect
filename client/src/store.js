@@ -9,5 +9,5 @@ const middleWare = [thunk];
 export default createStore(
   rootReducer,
   initialState,
-  applyMiddleware(middleWare)
+  applyMiddleware(...middleWare)
 );
