@@ -1,13 +1,10 @@
-import React from 'react';
-import keys_prod from './keys_prod';
-import keys_dev from './keys_dev';
-
 let keys;
 
-if (true) { // Production ?
-  keys = keys_prod;
+if (true) {
+  // Production ?
+  keys = require('./keys_prod');
 } else {
-  keys = keys_dev;
+  keys = require('keys_dev');
 }
 
 export default keys;
