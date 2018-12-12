@@ -49,10 +49,10 @@ module.exports = {
 
 Log into GitHub and go to https://github.com/settings/developers. Here you need to create an OAuth application and fill in the info with whatever you want. Once complete use the client id and secret as directed below.
 
-### client/keys.js
+### client/src/config/keys_dev.js
 
 ```javascript
-// root/client/keys.js
+// root/client/config/keys_dev
 export default ({
   githubSecret: 'YourGitHubSecret'
 });
