@@ -1,5 +1,12 @@
+import keys_prod from './keys_prod';
+import keys_dev from './keys_dev';
+
+let keys;
+
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./keys_prod');
+  keys = keys_prod;
 } else {
-  module.exports = require('./keys_dev');
+  keys = keys_dev;
 }
+
+export default keys;
