@@ -4,7 +4,7 @@ import keys_dev from './keys_dev';
 
 let keys;
 
-if (false) { // Production ?
+if (true) { // Production ?
   keys = keys_prod;
 } else {
   keys = keys_dev;
