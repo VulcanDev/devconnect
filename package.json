@@ -9,7 +9,7 @@
     "server-dev": "nodemon server.js",
     "client-dev": "npm start --prefix client",
     "dev": "concurrently -c green.bold,cyan.bold npm:server-dev npm:client-dev",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && REACT_ENV_PROD=true npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Theo Joyce",
   "license": "MIT",

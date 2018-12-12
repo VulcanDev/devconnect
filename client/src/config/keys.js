@@ -4,7 +4,7 @@ import keys_dev from './keys_dev';
 
 let keys;
 
-if (process.env.REACT_ENV_PROD) {
+if (false) { // Production ?
   keys = keys_prod;
 } else {
   keys = keys_dev;
