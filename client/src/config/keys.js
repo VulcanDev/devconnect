@@ -4,7 +4,7 @@ import keys_dev from './keys_dev';
 
 let keys;
 
-if (!('_self' in React.createElement('div'))) {
+if (process.env.REACT_ENV_PROD) {
   keys = keys_prod;
 } else {
   keys = keys_dev;
