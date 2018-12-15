@@ -13,11 +13,11 @@ This project is based on a web-course on Udemy, specifically [MERN Stack Front t
 - [x] Favicon and Logo art
 - [x] Better sanitization: Login and register email is not case-sensitive & profile handle is always lowercase
 - [x] Likes and dislikes do not require refreshing the post list
-- [ ] Connect social media accounts: Integrate social media sites API for validating ownership of social media
-- [ ] Use a custom Foundation UI for the website instead of the premade bootstrap one
-- [ ] Reset / change password
+- [ ] ~~Connect social media accounts: Integrate social media sites API for validating ownership of social media~~
+- [ ] ~~Use a custom Foundation UI for the website instead of the premade bootstrap one~~
+- [ ] ~~Reset / change password~~
 
-Features will be developed after completing the base project.
+Will focus on making my own personal site and another portfolio project from scratch.
 
 ## Live Host
 
